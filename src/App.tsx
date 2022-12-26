@@ -22,7 +22,7 @@ function App() {
     const { code } = event;
 
     if (code === 'KeyU') {
-      moveSquareToSecondaryArray();
+      moveSquareToUndidList();
       handleRemoveSquare();
     }
 
@@ -43,11 +43,11 @@ function App() {
 
   }, [handleUserKeyPress])
 
-  const moveSquareToSecondaryArray = () => {
+  const moveSquareToUndidList = () => {
     const square = squares.slice(-1)[0];
 
-    setSquaresToRedo(preValues => ([
-      ...preValues, square
+    setSquaresToRedo(prev => ([      
+      ...prev, square
     ]))
   }
 
@@ -59,7 +59,7 @@ function App() {
     newStyleSquare.pop();
     setSquaresToRedo(newStyleSquare);
 
-    setSquares(preValues => ([...preValues, lastSquare])); 
+    setSquares(prev => ([...prev, lastSquare])); 
   }
 
   const handleRemoveSquare = () => {
@@ -73,8 +73,8 @@ function App() {
   const handleAddSquare = (e: MouseEvent) => {
     const newStyleSquare = generateStyleCSS(`${e.clientX}px`, `${e.clientY}px`);
 
-    setSquares(preValues => ([
-      ...preValues, newStyleSquare
+    setSquares(prev => ([
+      ...prev, newStyleSquare
     ]))
   }
 
